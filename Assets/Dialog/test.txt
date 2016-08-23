@@ -1,7 +1,9 @@
-bg:2,ba:1*“Erm, ah, eh, I-I’m Anna Frescher.” She stammered as she instinctively took a small step back. The room turned around and suddenly everything went black.
-|*Anna woke up, the smooth grey concrete ceiling staring back at her, her head and shoulder ached. Badly. She groaned as she sat upright in the bed. It took a second before she realized she was in the first aid room of the school. The door of the small ward opened and the same guy from this morning walked into the door.
-|*“Ah! You’re awake!” He smiled as he sat down on the little stool next to her bed. “you made quite an impression apparently. Tripping over a stray whiteboard eraser and banging your head on the floor, I don’t think such a display of acrobatics has ever been displayed in this school.” He grinned at his own little joke but quickly changed his attitude as he saw that Anna was on the verge of tears. 
-|bg:1,ba:1*“Hey does it hurt so badly?” He held his hand to the side of her face, wiping away the tear rolling down her cheek. Anna shook her head. 
-|*“M-m-my introduction.” She muttered as she looked away. “They must think I’m weird now.” She sniffed and looked back at him.
-|*“Hey cheer up, you were just unlucky. I’m sure they won’t hold it against you.” He smiled and softly placed his hand on her head, rustling her hair. She sniffed again and softly asked. “A-a-are you the nurse here?” 
-|*“Close! I’m actually an intern here.” Pushed some of his black hair away as he looked at her, his blue eyes filled with kindness. “You’re a senior here right? Must be tough transferring in here so late.” Anna nodded. “Seriously though, how are you feeling? It doesn’t seem like you have a concussion, not feeling dizzy or nauseous?”
+<bg:2>
+HHKB-san is one of the smartest keyboards at Keeb Academy. She often clashes with others due to her different layout, but has found a friend in Planck-san. Due to how she has been viewed with her switches and layout, she is often very aloof and cold toward people. She is really friendly when you get to know her, but until then, she acts very reserved.
+
+|<bg:1,addChar:TestGirl:bodySprite:facialExpresion:1:-0.7:-13:-0.7:5>
+HHKB-san has struggled to get along with many people due to her often aloof and cold attitude. Many people view her as an â€˜elitistâ€™ keyboard and often times just say her switches are â€˜overrated.â€™ While HHKB-san shrugs these comments off, they still hurt her inside. She just wants to be typed on like any other keyboard. Will she find someone she can truly connect with?
+
+
+|<ba:1,bg:1>
+HHKB-san is attending KB Academy through a scholarship. While at the top of her class, and almost the top of the school academically, HHKB-san is usually found either alone or with her one friend Planck-san. She and Planck-san became friends because it was convenient. Not that they donâ€™t care about each other as friends, but thatâ€™s just how the situation ended up.
