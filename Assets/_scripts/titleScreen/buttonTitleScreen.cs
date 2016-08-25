@@ -4,6 +4,8 @@ using System.Collections;
 
 public class buttonTitleScreen : MonoBehaviour {
 
+    public GameObject container;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -22,5 +24,15 @@ public class buttonTitleScreen : MonoBehaviour {
     public void newGame()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void settings()
+    {
+        iTween.MoveTo(container, iTween.Hash("y", 222.64, "easeType", "easeInOutQuint", "speed", 10));
+    }
+
+    public void back()
+    {
+        iTween.MoveTo(container, iTween.Hash("y", -62.32, "easeType", "easeInOutQuint", "speed", 10));
     }
 }
