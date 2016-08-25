@@ -28,11 +28,11 @@ public class buttonTitleScreen : MonoBehaviour {
 
     public void settings()
     {
-        iTween.MoveTo(container, iTween.Hash("y", 222.64, "easeType", "easeInOutQuint", "speed", 10));
+        iTween.MoveTo(container, iTween.Hash("position", new Vector3(container.transform.position.x, 4.95f, container.transform.position.z), "easeType", "easeInOutQuint", "speed", 10));
     }
 
     public void back()
     {
-        iTween.MoveTo(container, iTween.Hash("y", -62.32, "easeType", "easeInOutQuint", "speed", 10));
+        iTween.MoveTo(container, iTween.Hash("position", new Vector3(container.transform.position.x, -4.95f, container.transform.position.z), "easeType", "easeInOutQuint", "speed", 10));
     }
 }
