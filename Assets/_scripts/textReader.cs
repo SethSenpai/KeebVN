@@ -1,21 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Text.RegularExpressions;
-
 using UnityEngine.UI;
-//using UnityEditor;
 
 public class textReader : MonoBehaviour
 {
 	private const float WAIT_TIME = 0.03f;
 
 	public GameObject textbox;
+    public GameObject titlebox;
 	public GameObject backgroundContainer;
     public GameObject lighting;
     public GameObject panel;
-    //public int bgNr;
     
     Text text;
+    Text titleText;
 
 
     public TextAsset loadFile;
@@ -38,6 +37,7 @@ public class textReader : MonoBehaviour
 	void Start(){
 
 		text = textbox.GetComponent<Text>();
+        titleText = titlebox.GetComponent<Text>();
         //panel = GameObject.Find("Panel");
         script = panel.GetComponent<clickTrigger>();
         dLight = lighting.GetComponent<Light>();
@@ -169,8 +169,23 @@ public class textReader : MonoBehaviour
 
 	void readCode(){
         for (int i=0; i < codePart.Length; i++){
+            //change background setTitle:<title> # clears the current title
+            if (codePart[i].StartsWith("setTit:"))
+            {
+                string[] codeValue;
+                codeValue = codePart[i].Split(":"[0]);
+                if(codeValue[1] == "#")
+                {
+                    titleText.text = " ";
+                }
+                else
+                {
+                    titleText.text = codeValue[1] + ":";
+                }
+                Debug.Log("setTit:" + codeValue[1]);
+            }
             //change background setBg:<backgroundnumber>
-			if(codePart[i].StartsWith("setBg:")){
+            if (codePart[i].StartsWith("setBg:")){
 				string[] codeValue;
 				codeValue = codePart[i].Split(":"[0]);
 				changeBG(codeValue[1]);

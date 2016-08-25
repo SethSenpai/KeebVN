@@ -1,11 +1,11 @@
-<addChar:pok3r_placeholder:f_sad:1:-0.7:-14:-0.7:slide:10,setBg:3,setMusic:Fond_memories>
+<addChar:pok3r_placeholder:f_sad:1:-0.7:-14:-0.7:slide:5,setBg:3,setMusic:Fond_memories,setTit:#>
 Pok3r-san is nice. Maybe she’s too nice? She grew up down the street from MC-kun and they both played together when they were younger. She hasn’t really seen or talked to the MC since these years, but it’s definitely nice seeing a face you haven’t seen for a long time. 
 
-|<setFace:pok3r_placeholder:f_smile,moveChar:pok3r_placeholder:-2:-0.7:5,setMusic:Golden_week>
+|<setFace:pok3r_placeholder:f_smile,moveChar:pok3r_placeholder:-2:-0.7:5,setMusic:Golden_week,setTit:Pok3r>
 Pok3r-san is always easy to talk to, and always willing to listen. She doesn’t stand out in class, but she isn’t invisible either. She’s your ever-so friendly and nice classmate. She started her school year here, but was ecstatic to see her childhood friend transfer to the same class she is in.
 
 |<setBg:1,setLight:0.45,setMusic:Fond_memories>
 Her best friend is the ever-so-shy 660m-san who she affectionately calls M-chan. While shy and reserved, Pok3r-san isn’t scared to fill it the gaps of the conversation. They’ve been best friends since Jr. High and still continue a strong friendship. 660m often has troubles trying to express what she wants, but Pok3r-san is always there to give her the push she needs to say what she needs to say. Often times, Pok3r-san already know what 660m-san wants to say, but still gives her the chance to work on being braver and voicing her opinions.
 
-|<remChar:pok3r_placeholder:-14:-0.7:slide:10>
+|<remChar:pok3r_placeholder:-14:-0.7:slide:5>
 “Sweet,” is probably one of the best words that describe her. Down to Earth and caring, Pok3r-san. On the outside, everything seems so wonderful. The truth is life is difficult. Pok3r-san helps her parents pay for her tuition by working two jobs to help make ends meet. While her friends are going out for karaoke, she’s working, studying, or trying to further her passion as an artist. She’s constantly balancing all of these things going on in her life. It’s not easy, but accomplishing your dreams isn’t always going to be easy.
