@@ -32,7 +32,7 @@ public class textReader : MonoBehaviour
 	private int clickNr = 0;
     private clickTrigger script;
     private Light dLight;
-    public string bgMusic;
+    public string bgMusic = null;
     
 
 	void Start(){
