@@ -11,7 +11,8 @@ public class textReader : MonoBehaviour
 
 	public GameObject textbox;
 	public GameObject backgroundContainer;
-    private GameObject panel;
+    public GameObject lighting;
+    public GameObject panel;
     //public int bgNr;
     
     Text text;
@@ -29,12 +30,18 @@ public class textReader : MonoBehaviour
 	private string typewriterText = "";
 	private int currentIndex = 0;
 	private int clickNr = 0;
+    private clickTrigger script;
+    private Light dLight;
+    public string bgMusic;
     
 
 	void Start(){
 
 		text = textbox.GetComponent<Text>();
-        panel = GameObject.Find("Panel");
+        //panel = GameObject.Find("Panel");
+        script = panel.GetComponent<clickTrigger>();
+        dLight = lighting.GetComponent<Light>();
+
         splitCodeStart();
 
 
@@ -71,7 +78,30 @@ public class textReader : MonoBehaviour
         Sprite face = Resources.Load<Sprite>("Characters/Placeholder/" + facialExpression);
         faceSPChild.sprite = face;
 
+        iTween.MoveTo(charTemp, iTween.Hash("position", Npos, "easeType", "easeInOutQuint", "speed" , float.Parse(speed)));
+    }
+
+    void removeCharacter(string objName, string xPos, string yPos, string transition, string speed)
+    {
+        GameObject charTemp = GameObject.Find(objName);
+        Vector3 Npos = new Vector3(float.Parse(xPos), float.Parse(yPos), 0);
         iTween.MoveTo(charTemp, Npos, float.Parse(speed));
+        iTween.MoveTo(charTemp, iTween.Hash("position", Npos, "easeType", "easeInOutQuint", "speed", float.Parse(speed), "oncomplete" , "killCharacter", "oncompleteparams" , objName , "oncompletetarget" , this.gameObject));
+       
+    }
+
+    void killCharacter(string objName)
+    {
+        //Debug.Log("we got there!");
+        GameObject charTemp = GameObject.Find(objName);
+        Destroy(charTemp);
+    }
+
+    void moveChar(string objName, string xPos, string yPos, string speed)
+    {
+        GameObject charTemp = GameObject.Find(objName);
+        Vector3 Npos = new Vector3(float.Parse(xPos), float.Parse(yPos), 0);
+        iTween.MoveTo(charTemp, iTween.Hash("position", Npos, "easeType", "easeInOutQuint", "speed", float.Parse(speed)));
     }
 
     void setFace(string objName, string facialExpression)
@@ -83,14 +113,17 @@ public class textReader : MonoBehaviour
         faceSPChild.sprite = face;
     }
 
+    void setLight(string numb)
+    {
+        dLight.intensity = float.Parse(numb);
+    }
+
 	void typeWrite()
 	{
 		waitTimer += Time.deltaTime;
 
         //Debug.Log (currentIndex);
-
-       clickTrigger script = panel.GetComponent<clickTrigger>();
-
+        
         if (script.clicked == true){
 			if (currentIndex == textPart[1].Length && clickNr < wholeSlide.Length-1){
 				text.text = " ";
@@ -136,28 +169,61 @@ public class textReader : MonoBehaviour
 
 	void readCode(){
         for (int i=0; i < codePart.Length; i++){
-            //change background bg:<backgroundnumber>
-			if(codePart[i].StartsWith("bg:")){
+            //change background setBg:<backgroundnumber>
+			if(codePart[i].StartsWith("setBg:")){
 				string[] codeValue;
 				codeValue = codePart[i].Split(":"[0]);
 				changeBG(codeValue[1]);
 				Debug.Log("bg:" + codeValue[1]);
 			}
-            //add character to scene addChar:<charName>:<facialExpresion>:<xPos>:<yPos>:<xStart>:<yStart>:<transition>
-			if(codePart[i].StartsWith("addChar:")){
+            //change lighting intensity 0.75 is normal, setLight:<float>
+            if (codePart[i].StartsWith("setLight:"))
+            {
+                string[] codeValue;
+                codeValue = codePart[i].Split(":"[0]);
+                setLight(codeValue[1]);
+                Debug.Log("setLight:" + codeValue[1]);
+            }
+            //add character to scene addChar:<charName>:<facialExpresion>:<xPos>:<yPos>:<xStart>:<yStart>:<transition>:<speed>
+            if (codePart[i].StartsWith("addChar:")){
 				string[] codeValue;
 				codeValue = codePart[i].Split(":"[0]);
                 addCharacter(codeValue[1], codeValue[2], codeValue[3], codeValue[4], codeValue[5], codeValue[6], codeValue[7], codeValue[8]);
 				Debug.Log("addChar:" + codeValue[1]);
 			}
+            //removes a character from the scene addChar:<charName>:<xPos>:<yPos>:<transition>:<speed>
+            if (codePart[i].StartsWith("remChar:"))
+            {
+                string[] codeValue;
+                codeValue = codePart[i].Split(":"[0]);
+                removeCharacter(codeValue[1], codeValue[2], codeValue[3], codeValue[4], codeValue[5]);
+                Debug.Log("remChar:" + codeValue[1]);
+            }
+            //change expression of a character, moveChar:<charName>:<xPos>:<yPos>:<speed>
+            if (codePart[i].StartsWith("moveChar:"))
+            {
+                string[] codeValue;
+                codeValue = codePart[i].Split(":"[0]);
+                moveChar(codeValue[1], codeValue[2], codeValue[3], codeValue[4]);
+                Debug.Log("moveChar:" + codeValue[1] );
+            }
+            //change the background music, putting in a # mutes the music, setMusic:<name>
+            if (codePart[i].StartsWith("setMusic:"))
+            {
+                string[] codeValue;
+                codeValue = codePart[i].Split(":"[0]);
+                bgMusic = codeValue[1];
+                Debug.Log("setMusic:" + codeValue[1]);
+            }
             //change expression of a character, setFace:<charName>:<face_name>
-			if(codePart[i].StartsWith("setFace:")){
+            if (codePart[i].StartsWith("setFace:")){
 				string[] codeValue;
 				codeValue = codePart[i].Split(":"[0]);
                 setFace(codeValue[1], codeValue[2]);
 				Debug.Log("setFace:" + codeValue[1] + codeValue[2]);
 			}
-		}
+   
+        }
 	}
 
 }
