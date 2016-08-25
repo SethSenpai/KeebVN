@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Text.RegularExpressions;
+
 using UnityEngine.UI;
-using UnityEditor;
+//using UnityEditor;
 
 public class textReader : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class textReader : MonoBehaviour
 	public GameObject textbox;
 	public GameObject backgroundContainer;
     private GameObject panel;
-	//public int bgNr;
-	Text text;
+    //public int bgNr;
+    
+    Text text;
 
-	public TextAsset loadFile;
+
+    public TextAsset loadFile;
     public Sprite faceSmile;
 
     private Object characterPrefab;
@@ -58,7 +61,7 @@ public class textReader : MonoBehaviour
     {
         Vector3 Opos = new Vector3(float.Parse(xStart), float.Parse(yStart), 0);
         Vector3 Npos = new Vector3(float.Parse(xPos), float.Parse(yPos), 0);
-        characterPrefab = AssetDatabase.LoadAssetAtPath("Assets/Resources/Characters/" + objName + ".prefab", typeof(GameObject));
+        characterPrefab = Resources.Load<GameObject>("Characters/" + objName);
         GameObject charTemp = Instantiate(characterPrefab) as GameObject;
         charTemp.name = objName;
         charTemp.transform.position = Opos;
