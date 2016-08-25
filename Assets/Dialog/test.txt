@@ -1,9 +1,11 @@
-<bg:2>
-HHKB-san is one of the smartest keyboards at Keeb Academy. She often clashes with others due to her different layout, but has found a friend in Planck-san. Due to how she has been viewed with her switches and layout, she is often very aloof and cold toward people. She is really friendly when you get to know her, but until then, she acts very reserved.
+<addChar:pok3r_placeholder:f_sad:1:-0.7:-14:-0.7:slide:5,bg:3>
+Pok3r-san is nice. Maybe she’s too nice? She grew up down the street from MC-kun and they both played together when they were younger. She hasn’t really seen or talked to the MC since these years, but it’s definitely nice seeing a face you haven’t seen for a long time. 
 
-|<bg:1,addChar:TestGirl:bodySprite:facialExpresion:1:-0.7:-13:-0.7:5>
-HHKB-san has struggled to get along with many people due to her often aloof and cold attitude. Many people view her as an ‘elitist’ keyboard and often times just say her switches are ‘overrated.’ While HHKB-san shrugs these comments off, they still hurt her inside. She just wants to be typed on like any other keyboard. Will she find someone she can truly connect with?
+|<>
+Pok3r-san is always easy to talk to, and always willing to listen. She doesn’t stand out in class, but she isn’t invisible either. She’s your ever-so friendly and nice classmate. She started her school year here, but was ecstatic to see her childhood friend transfer to the same class she is in.
 
+|<setFace:pok3r_placeholder:f_smile>
+Her best friend is the ever-so-shy 660m-san who she affectionately calls M-chan. While shy and reserved, Pok3r-san isn’t scared to fill it the gaps of the conversation. They’ve been best friends since Jr. High and still continue a strong friendship. 660m often has troubles trying to express what she wants, but Pok3r-san is always there to give her the push she needs to say what she needs to say. Often times, Pok3r-san already know what 660m-san wants to say, but still gives her the chance to work on being braver and voicing her opinions.
 
-|<ba:1,bg:1>
-HHKB-san is attending KB Academy through a scholarship. While at the top of her class, and almost the top of the school academically, HHKB-san is usually found either alone or with her one friend Planck-san. She and Planck-san became friends because it was convenient. Not that they don’t care about each other as friends, but that’s just how the situation ended up.
+|<bg:1>
+“Sweet,” is probably one of the best words that describe her. Down to Earth and caring, Pok3r-san. On the outside, everything seems so wonderful. The truth is life is difficult. Pok3r-san helps her parents pay for her tuition by working two jobs to help make ends meet. While her friends are going out for karaoke, she’s working, studying, or trying to further her passion as an artist. She’s constantly balancing all of these things going on in her life. It’s not easy, but accomplishing your dreams isn’t always going to be easy.

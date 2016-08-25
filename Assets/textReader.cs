@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Text.RegularExpressions;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class textReader : MonoBehaviour
 {
@@ -9,13 +10,15 @@ public class textReader : MonoBehaviour
 
 	public GameObject textbox;
 	public GameObject backgroundContainer;
+    private GameObject panel;
 	//public int bgNr;
 	Text text;
 
 	public TextAsset loadFile;
-    public GameObject characterPrefab;
+    public Sprite faceSmile;
 
-	private float waitTimer = 0.0f;
+    private Object characterPrefab;
+    private float waitTimer = 0.0f;
 	private string wholeText = " ";
 	private string[] wholeSlide;
 	private string[] textPart;
@@ -28,6 +31,7 @@ public class textReader : MonoBehaviour
 	void Start(){
 
 		text = textbox.GetComponent<Text>();
+        panel = GameObject.Find("Panel");
         splitCodeStart();
 
 
@@ -50,25 +54,41 @@ public class textReader : MonoBehaviour
 		bg.sprite = newBG; 
 	}
 
-    void addCharacter(string objName, string bodySprite, string facialExpression, string xPos, string yPos, string xStart, string yStart, string speed)
+    void addCharacter(string objName, string facialExpression, string xPos, string yPos, string xStart, string yStart, string transition ,string speed)
     {
         Vector3 Opos = new Vector3(float.Parse(xStart), float.Parse(yStart), 0);
         Vector3 Npos = new Vector3(float.Parse(xPos), float.Parse(yPos), 0);
-        GameObject charTemp = Instantiate(characterPrefab);
-        charTemp.name = "#" + objName;
+        characterPrefab = AssetDatabase.LoadAssetAtPath("Assets/Resources/Characters/" + objName + ".prefab", typeof(GameObject));
+        GameObject charTemp = Instantiate(characterPrefab) as GameObject;
+        charTemp.name = objName;
         charTemp.transform.position = Opos;
-        iTween.MoveTo(charTemp, Npos, float.Parse(speed));
-      
 
+        GameObject childFace = charTemp.gameObject.transform.GetChild(0).gameObject;
+        SpriteRenderer faceSPChild = childFace.GetComponent<SpriteRenderer>();
+        Sprite face = Resources.Load<Sprite>("Characters/Placeholder/" + facialExpression);
+        faceSPChild.sprite = face;
+
+        iTween.MoveTo(charTemp, Npos, float.Parse(speed));
+    }
+
+    void setFace(string objName, string facialExpression)
+    {
+        GameObject charTemp = GameObject.Find(objName);
+        GameObject childFace = charTemp.gameObject.transform.GetChild(0).gameObject;
+        SpriteRenderer faceSPChild = childFace.GetComponent<SpriteRenderer>();
+        Sprite face = Resources.Load<Sprite>("Characters/Placeholder/" + facialExpression);
+        faceSPChild.sprite = face;
     }
 
 	void typeWrite()
 	{
 		waitTimer += Time.deltaTime;
 
-		//Debug.Log (currentIndex);
+        //Debug.Log (currentIndex);
 
-		if(Input.GetMouseButtonUp(0)){
+       clickTrigger script = panel.GetComponent<clickTrigger>();
+
+        if (script.clicked == true){
 			if (currentIndex == textPart[1].Length && clickNr < wholeSlide.Length-1){
 				text.text = " ";
 				typewriterText = "" ;
@@ -79,7 +99,6 @@ public class textReader : MonoBehaviour
                 string tempCode = textPart[0];
                 tempCode = tempCode.Remove(0, 1);
                 codePart = tempCode.Split(","[0]);
-                Debug.Log(codePart[0] + " & " + codePart[1]);
                 readCode();
                 //Debug.Log(textPart[1]);
             }
@@ -102,7 +121,7 @@ public class textReader : MonoBehaviour
 		wholeText = loadFile.text;
         //wholeText = Regex.Replace(wholeText, @"\u000A", "");
         wholeText = wholeText.Replace("\u000A", System.String.Empty);
-        Debug.Log(wholeText);
+        //Debug.Log(wholeText);
         wholeSlide = wholeText.Split ("|"[0]);
 		textPart = wholeSlide[clickNr].Split(">"[0]);
         //Debug.Log(textPart[1]);
@@ -121,17 +140,19 @@ public class textReader : MonoBehaviour
 				changeBG(codeValue[1]);
 				Debug.Log("bg:" + codeValue[1]);
 			}
-            //add character to scene addChar:<objName>:<bodySprite>:<facialExpresion>:<xPos>:<yPos>:<xStart>:<yStart>
+            //add character to scene addChar:<charName>:<facialExpresion>:<xPos>:<yPos>:<xStart>:<yStart>:<transition>
 			if(codePart[i].StartsWith("addChar:")){
 				string[] codeValue;
 				codeValue = codePart[i].Split(":"[0]);
                 addCharacter(codeValue[1], codeValue[2], codeValue[3], codeValue[4], codeValue[5], codeValue[6], codeValue[7], codeValue[8]);
 				Debug.Log("addChar:" + codeValue[1]);
 			}
-			if(codePart[i].StartsWith("li:")){
+            //change expression of a character, setFace:<charName>:<face_name>
+			if(codePart[i].StartsWith("setFace:")){
 				string[] codeValue;
 				codeValue = codePart[i].Split(":"[0]);
-				Debug.Log("li:" + codeValue[1]);
+                setFace(codeValue[1], codeValue[2]);
+				Debug.Log("setFace:" + codeValue[1] + codeValue[2]);
 			}
 		}
 	}
