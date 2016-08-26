@@ -8,9 +8,50 @@ public class buttonTitleScreen : MonoBehaviour {
     public GameObject container;
     public GameObject sld;
     public GameObject sldA;
+    public Dropdown dropdown;
 
 	// Use this for initialization
 	void Start () {
+        dropdown = GameObject.Find("Dropdown").GetComponent<Dropdown>();
+
+        GameObject tg = GameObject.Find("Toggle");
+        Toggle tgC = tg.GetComponent<Toggle>();
+        bool fs;
+        //handle screen settings loading
+        if(PlayerPrefs.GetInt("fullscreen") == 1)
+        {
+            tgC.isOn = true;
+            fs = true;
+        }
+        else
+        {
+            tgC.isOn = false;
+            fs = false;
+        }
+
+        switch (PlayerPrefs.GetInt("resHeight"))
+        {
+            case 1080: //1080
+                Screen.SetResolution(1920, 1080, fs);
+                dropdown.value = 0;
+                break;
+
+            case 900: //900
+                Screen.SetResolution(1600, 900, fs);
+                dropdown.value = 1;
+                break;
+
+            case 720: //720
+                Screen.SetResolution(1280, 720, fs);
+                dropdown.value = 2;
+                break;
+
+            case 540: //540
+                Screen.SetResolution(960, 540, fs);
+                dropdown.value = 3;
+                break;
+        }
+
         sld = GameObject.Find("SliderText");
         sldA = GameObject.Find("SliderAudioMaster");
 
@@ -65,4 +106,42 @@ public class buttonTitleScreen : MonoBehaviour {
 
     }
 
+    public void toggleFullscreen(bool screen)
+    {
+        Screen.fullScreen = screen;
+        int temp;
+        if(screen == true) { temp = 1; } else { temp = 0; }
+        PlayerPrefs.SetInt("fullscreen", temp);
+    }
+
+    public void toggleResolution()
+    {
+        int temp = PlayerPrefs.GetInt("fullscreen");
+        bool fs;
+        if (temp == 0) { fs = false; } else { fs = true; }
+
+        switch (dropdown.value)
+        {
+            case 0: //1080
+                Screen.SetResolution(1920, 1080, fs);
+                PlayerPrefs.SetInt("resHeight", 1080);
+                break;
+
+            case 1: //900
+                Screen.SetResolution(1600, 900, fs);
+                PlayerPrefs.SetInt("resHeight", 900);
+                break;
+
+            case 2: //720
+                Screen.SetResolution(1280, 720, fs);
+                PlayerPrefs.SetInt("resHeight", 720);
+                break;
+
+            case 3: //540
+                Screen.SetResolution(960, 540, fs);
+                PlayerPrefs.SetInt("resHeight", 540);
+                break;
+        }
+            
+    }
 }
