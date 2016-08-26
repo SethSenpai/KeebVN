@@ -756,7 +756,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &799291726
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,46 +846,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 799291726}
---- !u!1 &844148083
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 844148085}
-  - 114: {fileID: 844148084}
-  m_Layer: 0
-  m_Name: MakeGrill
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &844148084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 844148083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 006dfbb2e158a9a4ca213327091e121c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &844148085
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 844148083}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.119783, y: -1.1744139, z: 5.794922}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
 --- !u!1 &869918521
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,7 +2749,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &943459213
 GameObject:
   m_ObjectHideFlags: 0
@@ -3128,46 +3088,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!1 &1462121220
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1462121222}
-  - 114: {fileID: 1462121221}
-  m_Layer: 0
-  m_Name: StateLoader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1462121221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1462121220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f30494c65fa22b24ba4b0f2ab0da2fda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1462121222
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1462121220}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
 --- !u!1 &1471739719
 GameObject:
   m_ObjectHideFlags: 0
@@ -3195,6 +3115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439d3914d732da54ebeb8f8aacd9df8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WAIT_TIME: 0.03
   textbox: {fileID: 1108780463}
   titlebox: {fileID: 1618012352}
   backgroundContainer: {fileID: 740035921}
@@ -3215,7 +3136,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
 --- !u!1 &1618012352
 GameObject:
   m_ObjectHideFlags: 0
@@ -3330,7 +3251,8 @@ AudioSource:
   m_GameObject: {fileID: 1755947660}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300001, guid: 772db1fd866a1c240a9b4ed36b93ed7e,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -3408,7 +3330,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
 --- !u!114 &1755947663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3421,3 +3343,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textReader: {fileID: 1471739719}
+  masterMixer: {fileID: 24100000, guid: 772db1fd866a1c240a9b4ed36b93ed7e, type: 2}
+  isReading: 1

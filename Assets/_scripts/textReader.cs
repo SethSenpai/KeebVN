@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class textReader : MonoBehaviour
 {
-	private const float WAIT_TIME = 0.03f;
+	public float WAIT_TIME = 0.03f;
 
 	public GameObject textbox;
     public GameObject titlebox;
@@ -36,6 +36,7 @@ public class textReader : MonoBehaviour
 
 	void Start(){
 
+        WAIT_TIME = PlayerPrefs.GetFloat("txtSpeed");
 		text = textbox.GetComponent<Text>();
         titleText = titlebox.GetComponent<Text>();
         //panel = GameObject.Find("Panel");
