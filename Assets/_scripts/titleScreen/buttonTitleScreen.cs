@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 public class buttonTitleScreen : MonoBehaviour {
 
@@ -9,6 +11,10 @@ public class buttonTitleScreen : MonoBehaviour {
     public GameObject sld;
     public GameObject sldA;
     public Dropdown dropdown;
+
+    private string keytoset;
+
+    private bool waitForKeypress;
 
 	// Use this for initialization
 	void Start () {
@@ -68,11 +74,17 @@ public class buttonTitleScreen : MonoBehaviour {
 
         tempSlideA.value = PlayerPrefs.GetFloat("audioMaster");
         tempSlide.value = PlayerPrefs.GetFloat("txtSpeed");
+
+        Text ib = GameObject.Find("hideInterfaceKey").GetComponentInChildren<Text>();
+        Text sb = GameObject.Find("skipKey").GetComponentInChildren<Text>();
+
+        if(PlayerPrefs.GetString("hideInterfaceKey") != "") { ib.text = PlayerPrefs.GetString("hideInterfaceKey"); } else { PlayerPrefs.SetString("hideInterfaceKey", ib.text); }
+        if (PlayerPrefs.GetString("skipKey") != "") { sb.text = PlayerPrefs.GetString("skipKey"); } else { PlayerPrefs.SetString("skipKey", sb.text); }
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
+        checkKeyPress(keytoset);
 	}
 
     public void closeGame()
@@ -143,5 +155,38 @@ public class buttonTitleScreen : MonoBehaviour {
                 break;
         }
             
+    }
+    void checkKeyPress(string whatkey)
+    {
+        if (waitForKeypress == true)
+        {
+            foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKeyDown(kcode))
+                {
+                    Debug.Log("KeyCode down: " + kcode);
+                    waitForKeypress = false;
+                    keytoset = null;
+                    setKey(whatkey, kcode);
+                }
+            }
+        }
+    }
+
+    void setKey(string whatkey, KeyCode keypress)
+    {
+        Debug.Log("setting key for: " + whatkey +  " to: " + keypress);
+        Text setButton = GameObject.Find(whatkey).GetComponentInChildren<Text>();
+        setButton.text = "" + keypress;
+        PlayerPrefs.SetString(whatkey, ""+keypress);
+    }
+
+    public void setKeyTrigger(string whatkey)
+    {
+        //Debug.Log("liquid is doing it!");
+        Text setButton = GameObject.Find(whatkey).GetComponentInChildren<Text>();
+        setButton.text = "key?";
+        waitForKeypress = true;
+        keytoset = whatkey;
     }
 }
