@@ -32,7 +32,7 @@ public class textReader : MonoBehaviour
     private clickTrigger script;
     private Light dLight;
     public string bgMusic = null;
-    
+    public buttonScript bscript;
 
 	void Start(){
 
@@ -136,7 +136,7 @@ public class textReader : MonoBehaviour
                 string tempCode = textPart[0];
                 tempCode = tempCode.Remove(0, 1);
                 codePart = tempCode.Split(","[0]);
-                readCode();
+                //readCode();
                 //Debug.Log(textPart[1]);
             }
 			else{
@@ -146,10 +146,41 @@ public class textReader : MonoBehaviour
 		}
 		
 		if (waitTimer > WAIT_TIME && currentIndex < textPart[1].Length)
-		{            
-			typewriterText += textPart[1][currentIndex];
-			waitTimer = 0.0f;
-			++currentIndex;
+		{
+            if (bscript.superspeed != true)
+            {
+                typewriterText += textPart[1][currentIndex];
+                waitTimer = 0.0f;
+                ++currentIndex;
+            }
+            else
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    if (currentIndex + i < textPart[1].Length)
+                    {
+                        typewriterText += textPart[1][currentIndex + i];
+                    }                    
+                }
+                waitTimer = 0.0f;
+                currentIndex = currentIndex + 10;
+                if (currentIndex >= textPart[1].Length && clickNr < wholeSlide.Length-1)
+                {
+                    Debug.Log("got there");
+                    text.text = " ";
+                    typewriterText = "";
+                    clickNr++;
+                    currentIndex = 0;
+                    //Debug.Log(clickNr);
+                    textPart = wholeSlide[clickNr].Split(">"[0]);
+                    string tempCode = textPart[0];
+                    tempCode = tempCode.Remove(0, 1);
+                    codePart = tempCode.Split(","[0]);
+                    readCode();
+                    //Debug.Log(textPart[1]);
+
+                }
+            }
 		}   
 	}
 
