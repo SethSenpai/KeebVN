@@ -33,6 +33,7 @@ public class textReader : MonoBehaviour
     private Light dLight;
     public string bgMusic = null;
     public buttonScript bscript;
+   
 
 	void Start(){
 
@@ -79,14 +80,24 @@ public class textReader : MonoBehaviour
         Sprite face = Resources.Load<Sprite>("Characters/Placeholder/" + facialExpression);
         faceSPChild.sprite = face;
 
-        iTween.MoveTo(charTemp, iTween.Hash("position", Npos, "easeType", "easeInOutQuint", "speed" , float.Parse(speed)));
+        if (bscript.superspeed == true)
+        {
+            speed = "10000";
+        }
+            iTween.MoveTo(charTemp, iTween.Hash("position", Npos, "easeType", "easeInOutQuint", "speed" , float.Parse(speed)));
     }
 
     void removeCharacter(string objName, string xPos, string yPos, string transition, string speed)
     {
         GameObject charTemp = GameObject.Find(objName);
         Vector3 Npos = new Vector3(float.Parse(xPos), float.Parse(yPos), 0);
-        iTween.MoveTo(charTemp, Npos, float.Parse(speed));
+
+        if (bscript.superspeed == true)
+        {
+            speed = "10000";
+        }
+
+        //iTween.MoveTo(charTemp, Npos, float.Parse(speed));
         iTween.MoveTo(charTemp, iTween.Hash("position", Npos, "easeType", "easeInOutQuint", "speed", float.Parse(speed), "oncomplete" , "killCharacter", "oncompleteparams" , objName , "oncompletetarget" , this.gameObject));
        
     }
@@ -102,6 +113,11 @@ public class textReader : MonoBehaviour
     {
         GameObject charTemp = GameObject.Find(objName);
         Vector3 Npos = new Vector3(float.Parse(xPos), float.Parse(yPos), 0);
+
+        if (bscript.superspeed == true)
+        {
+            speed = "10000";
+        }
         iTween.MoveTo(charTemp, iTween.Hash("position", Npos, "easeType", "easeInOutQuint", "speed", float.Parse(speed)));
     }
 
@@ -136,7 +152,7 @@ public class textReader : MonoBehaviour
                 string tempCode = textPart[0];
                 tempCode = tempCode.Remove(0, 1);
                 codePart = tempCode.Split(","[0]);
-                //readCode();
+                readCode();
                 //Debug.Log(textPart[1]);
             }
 			else{
@@ -166,7 +182,7 @@ public class textReader : MonoBehaviour
                 currentIndex = currentIndex + 10;
                 if (currentIndex >= textPart[1].Length && clickNr < wholeSlide.Length-1)
                 {
-                    Debug.Log("got there");
+                    //Debug.Log("got there");
                     text.text = " ";
                     typewriterText = "";
                     clickNr++;
