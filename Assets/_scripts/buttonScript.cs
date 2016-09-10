@@ -41,9 +41,11 @@ public class buttonScript : MonoBehaviour {
     void checkHideInterfacePress()
     {
         string keyLoad = PlayerPrefs.GetString("hideInterfaceKey");
-        keyLoad = keyLoad.ToLower();
+        //keyLoad = keyLoad.ToLower();
+        KeyCode keyC = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyLoad);
+        //Debug.Log(keyC);
 
-        if (Input.GetKeyDown(keyLoad))
+        if (Input.GetKeyDown(keyC))
         {
             if (interfaceBool)
             {
@@ -61,10 +63,12 @@ public class buttonScript : MonoBehaviour {
     void checkSuperSpeedPress()
     {
         string keyLoad = PlayerPrefs.GetString("skipKey");
-        keyLoad = keyLoad.ToLower();
-        keyLoad = "left shift";
+        //keyLoad = keyLoad.ToLower();
+        KeyCode keyC = (KeyCode) System.Enum.Parse(typeof(KeyCode), keyLoad);
+        //Debug.Log(keyC);
+        //keyLoad = "left shift";
 
-        if (Input.GetKeyDown(keyLoad))
+        if (Input.GetKeyDown(keyC))
         {
             if (superspeed != true)
             {
@@ -74,7 +78,7 @@ public class buttonScript : MonoBehaviour {
 
         }
 
-        if (Input.GetKeyUp(keyLoad))
+        if (Input.GetKeyUp(keyC))
         {
             if (superspeed)
             {
